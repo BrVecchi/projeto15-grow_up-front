@@ -1,8 +1,16 @@
+import Login from "./Login";
+import GlobalStyle from "./Globastyle";
+import Cadastro from "./Cadastro";
+import Produtos from "./Produtos";
+import Topo from "./Topo";
 function App() {
   return (
-    <div className="App">
-      Working
-    </div>
+    <>
+    <GlobalStyle/>
+    <Topo></Topo>
+    
+    
+    </>
   );
 }
 

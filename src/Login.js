@@ -9,9 +9,9 @@ export default function Login() {
 
         const body = {
             email: email,
-            senha: senha
+            password: senha
         }
-        const promise = axios.post('asdijasiodja', body)
+        const promise = axios.post('https://growup-api.onrender.com/sign-in', body)
         promise.then((res) => {
             console.log(res.data)
 

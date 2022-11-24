@@ -1,44 +1,39 @@
+
+import axios from "axios"
+import { useState, useEffect } from "react"
 import styled from "styled-components"
 export default function Produtos() {
+    const [produtos, setProdutos] = useState([])
+    function listarProdutos() {
+
+        const URL = 'https://growup-api.onrender.com/products'
+        const promise = axios.get(URL)
+
+        promise.then((res) => {
+            setProdutos(res.data)
+        })
+        promise.catch((err) => {
+            console.log(err.response.data)
+        })
+    }
+    useEffect(() => {
+        listarProdutos()
+    }, [])
+
+
     return (
         <>
             <Container>
-                <Produtcs>
-                    <img src="https://www.gsuplementos.com.br/upload/produto/imagem/m_top-whey-protein-concentrado-1kg-growth-supplements.png"></img>
-                    <h1>Whey Protein</h1>
-                    <p>Proteina do soro de leite</p>
-                    <p> R$ 170,00 </p>
-                    <button>Adicionar ao carrinho</button>
-                </Produtcs>
-                <Produtcs> <img src="https://www.gsuplementos.com.br/upload/produto/imagem/m_top-whey-protein-concentrado-1kg-growth-supplements.png"></img>
-                    <h1>Whey Protein</h1>
-                    <p>Proteina do soro de leite</p>
-                    <p> R$ 170,00 </p>
-                </Produtcs>
-                <Produtcs>
-                    <img src="https://www.gsuplementos.com.br/upload/produto/imagem/m_top-whey-protein-concentrado-1kg-growth-supplements.png"></img>
-                    <h1>Whey Protein</h1>
-                    <p>Proteina do soro de leite</p>
-                    <p> R$ 170,00 </p>
-                </Produtcs>
-                <Produtcs>
-                    <img src="https://www.gsuplementos.com.br/upload/produto/imagem/m_top-whey-protein-concentrado-1kg-growth-supplements.png"></img>
-                    <h1>Whey Protein</h1>
-                    <p>Proteina do soro de leite</p>
-                    <p> R$ 170,00 </p>
-                </Produtcs>
-                <Produtcs>
-                    <img src="https://www.gsuplementos.com.br/upload/produto/imagem/m_top-whey-protein-concentrado-1kg-growth-supplements.png"></img>
-                    <h1>Whey Protein</h1>
-                    <p>Proteina do soro de leite</p>
-                    <p> R$ 170,00 </p>
-                </Produtcs>
-                <Produtcs>
-                    <img src="https://www.gsuplementos.com.br/upload/produto/imagem/m_top-whey-protein-concentrado-1kg-growth-supplements.png"></img>
-                    <h1>Whey Protein</h1>
-                    <p>Proteina do soro de leite</p>
-                    <p> R$ 170,00 </p>
-                </Produtcs>
+                {produtos.map((p) => (
+                    <Produtcs key={p.id}>
+                        <img src={p.image}></img>
+                        <h1>{p.name}</h1>
+                        <p>{p.description}</p>
+                        <p> {p.price} </p>
+                        <button>Adicionar ao carrinho</button>
+                    </Produtcs>
+                ))}
+
             </Container>
         </>
     )
@@ -60,6 +55,10 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+img{
+    width: 100px;
+    height: 100px;
+}
 
 h1{
     font-size: 30px;

@@ -17,7 +17,7 @@ export default function Cadastro(){
         } 
         
         
-        const promise = axios.post('https://growup-api.onrender.com/', body)
+        const promise = axios.post('https://growup-api.onrender.com/sign-up', body)
         
         promise.then((res) => {
           console.log(res.data)

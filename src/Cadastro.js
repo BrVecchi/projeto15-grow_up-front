@@ -2,23 +2,22 @@ import { useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
 export default function Cadastro(){
-    const[nome, setNome] = useState("")
+    const[name, setName] = useState("")
     const[email, setEmail] = useState("")
-    const[senha, setSenha] =  useState("")
-    const[senhaConfirmada, setSenhaConfirmada] = useState("")
+    const[password, setPassword] =  useState("")
+    
 
     function fazerCadastro(e){
         e.preventDefault()
 
         const body = {
             email: email,
-            nome: nome,
-            senha: senha,
-            senhaConfirmada: senhaConfirmada
+            name: name,
+            password: password
         } 
         
         
-        const promise = axios.post('dsiajdiojsdiasiojdiosj', body)
+        const promise = axios.post('https://growup-api.onrender.com/', body)
         
         promise.then((res) => {
           console.log(res.data)
@@ -33,11 +32,10 @@ export default function Cadastro(){
         <>
         <form onSubmit={fazerCadastro}>
         <Container>
-        <Logo>GrowUp</Logo>
         <input 
         required
-        value={nome}
-        onChange={e => setNome(e.target.value)}
+        value={name}
+        onChange={e => setName(e.target.value)}
         placeholder="nome"></input>
         <input
         required
@@ -46,14 +44,9 @@ export default function Cadastro(){
         placeholder="e-mail"></input>
         <input 
         required
-        value={senha}
-        onChange={e => setSenha(e.target.value)}
+        value={password}
+        onChange={e => setPassword(e.target.value)}
         placeholder="senha"></input>
-        <input 
-        required
-        value={senhaConfirmada}
-        onChange={e => setSenhaConfirmada(e.target.value)}
-        placeholder="confirme a senha"></input>
         <button type="submit">Cadastrar</button>
         <p>Já tem uma conta? Faça login!</p>
         </Container>
@@ -98,9 +91,4 @@ p{
     color:#52B6FF;
     font-family: 'Lexend Deca', sans-serif;
 }
-`
-const Logo = styled.div`
-font-size: 25px;
-margin-bottom: 20px;
-
 `

@@ -24,7 +24,6 @@ export default function Login() {
     return (
         <><form onSubmit={fazerLogin}>
             <Container>
-                <Logo>GrowUp</Logo>
                 <input
                     required
                     value={email}
@@ -80,8 +79,3 @@ p{
 }
 `
 
-const Logo = styled.div`
-font-size: 25px;
-margin-bottom: 20px;
-
-`

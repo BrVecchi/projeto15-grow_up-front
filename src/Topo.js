@@ -1,14 +1,18 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+import { useState } from "react"
 export default function Topo() {
+    
     return (
         <>
             <Container>
-                <Login>Bem vindo visitante, cadastre-se ou faça seu login</Login>
+                <Login>Bem vindo visitante, <Link to="/sign-up">cadastre-se</Link> ou <Link to="/sign-in">faça seu login</Link></Login>
                 <Logo>GrowUp</Logo>
                 <Carrinho>
                     <img src="./carrinho.png"></img>
                 </Carrinho>
             </Container>
+            
         </>
     )
 }

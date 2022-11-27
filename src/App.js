@@ -1,10 +1,10 @@
-import Login from "./Login";
-import GlobalStyle from "./Globastyle";
-import Cadastro from "./Cadastro";
-import Produtos from "./Produtos";
-import Topo from "./Topo";
+import GlobalStyle from "./styles/Globastyle";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React from "react";
+import Products from "./pages/products/Products";
+import SignUp from "./pages/sign-up/SignUp";
+import SignIn from "./pages/sign-in/SignIn";
+import Header from "./components/Header";
 function App() {
 
 
@@ -12,12 +12,13 @@ function App() {
     <>
       <BrowserRouter>
         <GlobalStyle />
-        <Topo></Topo>
+        <Header>
         <Routes>
-          <Route path="/sign-up" element={<Cadastro />} />
-          <Route path="/sign-in" element={<Login />} />
-          <Route path="/products" element={<Produtos />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/" element={<Products />} />
         </Routes>
+        </Header>
       </BrowserRouter>
     </>
   );

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
-export default function Cadastro(){
+export default function SignUp(){
     const[name, setName] = useState("")
     const[email, setEmail] = useState("")
     const[password, setPassword] =  useState("")

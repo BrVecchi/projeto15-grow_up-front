@@ -12,13 +12,12 @@ function App() {
     <>
       <BrowserRouter>
         <GlobalStyle />
-        <Header>
+        <Header />
         <Routes>
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/" element={<Products />} />
         </Routes>
-        </Header>
       </BrowserRouter>
     </>
   );

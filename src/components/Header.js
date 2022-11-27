@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-export default function Topo() {
+export default function Header() {
     
     return (
         <>
@@ -8,7 +8,7 @@ export default function Topo() {
                 <Login>Bem vindo visitante, <Link to="/sign-up">cadastre-se</Link> ou <Link to="/sign-in">faça seu login</Link></Login>
                 <Logo>GrowUp</Logo>
                 <Carrinho>
-                    <img src="./carrinho.png"></img>
+                    <img src="./carrinho.png" alt="cart icon"></img>
                 </Carrinho>
             </Container>
             

@@ -2,8 +2,10 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import styled from "styled-components"
-export default function Produtos() {
+export default function Products() {
     const [produtos, setProdutos] = useState([])
+    console.log(produtos)
+
     function listarProdutos() {
 
         const URL = 'https://growup-api.onrender.com/products'
@@ -26,7 +28,7 @@ export default function Produtos() {
             <Container>
                 {produtos.map((p) => (
                     <Produtcs key={p.id}>
-                        <img src={p.image}></img>
+                        <img src={p.image} alt={`${p.name} product`}></img>
                         <h1>{p.name}</h1>
                         <p>{p.description}</p>
                         <p> {p.price} </p>

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
-export default function Login() {
+export default function SignIn() {
     const [email, setEmail] = useState("")
     const [senha, setSenha] = useState("")
     function fazerLogin(e) {

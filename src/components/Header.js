@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import MyContext from "./MyContext";
+import { useContext } from "react";
 export default function Header() {
   const navigate = useNavigate();
+  const { setCartDisplay} = useContext(MyContext)
 
   const goHome = () => {
     navigate("/");
   };
+
+  const openModal = () => {
+    setCartDisplay("flex")
+  }
 
   return (
     <>
@@ -15,7 +22,7 @@ export default function Header() {
           <Link to="/sign-in">faça seu login</Link>
         </Login>
         <Logo onClick={goHome}>GrowUp</Logo>
-        <Carrinho>
+        <Carrinho onClick={openModal}>
           <img src="./carrinho.png" alt="cart icon"></img>
         </Carrinho>
       </Container>
@@ -28,13 +35,15 @@ const Container = styled.div`
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #3bcfff;
+  padding: 0 30px 0 30px;
 `;
 const Logo = styled.div`
   font-size: 40px;
   font-family: "Lexend Deca", sans-serif;
   color: white;
+  padding-right: 10%;
   &:hover {
     cursor: pointer;
   }

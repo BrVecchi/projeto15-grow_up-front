@@ -1,9 +1,15 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
+import Cart from "../../components/Cart";
+import MyContext from "../../components/MyContext";
 export default function Products() {
+  const { token } = useContext(MyContext);
+  console.log(token)
+
   const [produtos, setProdutos] = useState([]);
-  console.log(produtos);
+  const [cartProducts, setCardProducts] = useState([]);
+  console.log(cartProducts);
 
   function listarProdutos() {
     const URL = "https://growup-api.onrender.com/products";
@@ -16,12 +22,56 @@ export default function Products() {
       console.log(err.response.data);
     });
   }
+
+  function getCart() {
+    const URL = "https://growup-api.onrender.com/cart";
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const promise = axios.get(URL, config);
+
+    promise.then((res) => {
+      setCardProducts(res.data);
+      console.log(res.data);
+    });
+    promise.catch((err) => {
+      console.log(err.response.data);
+    });
+  }
+
   useEffect(() => {
     listarProdutos();
+    getCart();
   }, []);
+
+  const addProduct = (p) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const URL = "https://growup-api.onrender.com/cart";
+    const promise = axios.post(
+      URL,
+      { name: p.name, price: p.price, image: p.image },
+      config
+    );
+
+    promise
+      .then((res) => {
+        console.log("Ok");
+      })
+      .catch((err) => {
+        alert("Produto não inserido");
+        console.log(err.response.data);
+      });
+  };
 
   return (
     <>
+      <Cart cartProducts={cartProducts} setCardProducts={setCardProducts} />
       <Container>
         {produtos.map((p) => (
           <Produtc key={p.id}>
@@ -29,7 +79,7 @@ export default function Products() {
             <h1>{p.name}</h1>
             <p>{p.description}</p>
             <p> {p.price} </p>
-            <button>Adicionar</button>
+            <button onClick={() => addProduct(p)}>Adicionar</button>
           </Produtc>
         ))}
       </Container>
